@@ -76,5 +76,5 @@ Il sistema è sviluppato con **Spring Boot** e prevede l'accesso tramite tre tip
 
 1. Clona la repository:
    ```bash
-   git clone https://github.com/tuo-utente/Siw-Movies.git
-   cd sistema-film
+   git clone https://github.com/EmiliaRusso00/Siw-Movies.git
+   cd Siw-Movies
