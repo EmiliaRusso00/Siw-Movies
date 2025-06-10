@@ -21,7 +21,7 @@ Il sistema è sviluppato con **Spring Boot** e prevede l'accesso tramite tre tip
   - Registi
 - Cancellazione delle recensioni
 
-##🎞️ Specifiche tecniche
+## 🎞️ Specifiche tecniche
 
 - Ogni **film** include:
   - Titolo
