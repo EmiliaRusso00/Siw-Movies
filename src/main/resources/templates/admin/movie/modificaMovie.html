@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Modifica Movie')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+	<section class="generic_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Modifica Film</h2>
+			</div>
+
+
+
+			<div class="form_container">
+				<form th:action="@{/admin/movie/modificaMovie/} + *{id}" method="post" th:object="${movie}">
+					<div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger" role="alert">
+						<h4 align="center" th:each="err : ${#fields.globalErrors()}" th:text="'Errore: ' + ${err}">...</h4>
+					</div>
+					<div>Titolo:<br><input type="text" class="form-control" placeholder="Titolo" th:field="*{title}"></div>
+					<div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger" role="alert"></div>
+					
+					<div>Anno:<br><input type="text" class="form-control" placeholder="Anno" th:field="*{year}"></div>
+					<div th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="alert alert-danger" role="alert"></div>
+					
+					<div class="btn_box"><button type="submit">Modifica</button></div>
+				</form>
+				<br><br>
+				<h3>Modifica Immagine Profilo Movie</h3><br>
+				<div class="form_container">
+					<form th:action="@{/admin/movie/changeImg/} + ${movie.id}" method="post" enctype="multipart/form-data">
+						<div><input type="file" class="form-control-file" name="file" required></div>
+
+						<div class="preview-img">
+							<h5><em>Immagine attuale:</em></h5>
+							<img th:if="${movie.img == 'profili'}" src="/images/movie1.png" alt="Profile Movie">
+							<img th:unless ="${movie.img == 'profili'}" th:src="'/images/movie/profili/' + ${movie.img}" alt="Profile Movie">
+						</div>
+
+						<div class="btn_box"><button type="submit">Cambia Immagine</button></div>
+					</form>
+				</div>
+			</div>
+			
+			
+			
+
+			<div th:replace="fragments/homePage.html :: backButton(back='/', text1='Dashboard', back2='/admin/movie', text2='Elenco Movies')"></div>
+		</div> <!-- end container -->
+	</section>
+
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

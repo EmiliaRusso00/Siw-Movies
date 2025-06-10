@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Scelta Regista')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+	
+	
+	<section class="artist-background informations-section ">
+
+		<div th:if="${movie.img == 'profili'}" class="img-profile-informations">
+			<img src="/images/movie1.jpg" alt="">
+		</div>
+		<div th:unless ="${movie.img == 'profili'}" class="img-profile-informations">
+			<img th:src="'/images/movie/profili/' + ${movie.img}" alt="Profile Movie">
+		</div>
+
+	</section>
+
+   <section class="generic_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Regista per il Film intitolato "<strong th:text="${movie.title}"></strong>" dell'Anno <strong th:text="${movie.year}"></strong></h2>
+			</div>
+			
+
+	<section class="boxInfo_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Elenco Possibili Direttori</h2>
+			</div>
+			
+			<div class="row grid">
+				<div th:each="artist : ${artists}" class="col-sm-6 col-lg-4 all">
+					<div class="box">
+						<div>
+
+							<div th:if="${artist.img == 'profili'}" class="img-box">
+								<img src="/images/artist.jpg" alt="">
+							</div>
+							<div th:unless ="${artist.img == 'profili'}" class="img-box">
+								<img th:src="'/images/artist/profili/' + ${artist.img}" alt="Profile Artist">
+							</div>
+
+							<div class="detail-box">
+								<strong>Nome e Cognome:</strong>
+								<p th:text="${artist.name} + ' ' + ${artist.surname}">Nome e Cognome Artista</p>
+								<strong>Data di Nascita:</strong>
+								<p th:text="${artist.dateOfBirth}">Data di Nascita Artista</p>
+								<p><a th:href="@{'/admin/setDirectorToMovie/'+ ${artist.id}+'/'+${movie.id}}" class="btn btn-sm">Aggiungi</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div th:replace="fragments/homePage.html :: backButton(back='/', text1='Indietro', back2='no', text2=' ')"></div>
+		</div> <!-- end container -->
+	</section>
+
+<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

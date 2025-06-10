@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Register')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+	
+	  <section class="generic_section layout_padding">
+	    <div class="container">
+	      <div class="heading_container">
+	        <h2>Modulo di Registrazione</h2>
+	      </div>
+	      <div class="row">
+	        <div class="col-md-6">
+	          <div class="form_container">
+				<form th:action="@{/register}" method="post">
+				<div th:object="${user}">
+					<div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger" role="alert">
+						<h4 align="center" th:each="err : ${#fields.globalErrors()}" th:text="'Errore: ' + ${err}">...</h4>
+					</div>
+					<div><input type="text" class="form-control" placeholder="Nome" th:field="*{name}" ></div>
+					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" role="alert"></div>
+					
+					<div><input type="text" class="form-control" placeholder="Cognome" th:field="*{surname}" ></div>
+					<div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="alert alert-danger" role="alert"></div>
+					
+					<div><input type="text" class="form-control" placeholder="Email" th:field="*{email}" ></div>
+					<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger" role="alert"></div>
+				</div>
+				<div th:object="${credentials}">
+					<div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger" role="alert">
+						<h4 align="center" th:each="err : ${#fields.globalErrors()}" th:text="'Errore: ' + ${err}">...</h4>
+					</div>
+					<div><input type="text" class="form-control" placeholder="Username" th:field="*{username}" ></div>
+					<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="alert alert-danger" role="alert"></div>
+					
+					<div><input type="password" class="form-control" placeholder="Password" th:field="*{password}" ></div>
+					<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger" role="alert"></div>
+				</div>
+					
+					<div class="btn_box"><button type="submit">Conferma</button></div>
+				</form>
+	          </div>
+	        </div>
+	        <div class="col-md-6">
+	          <img style="width: 100%" src="/images/register-image2.gif">
+	        </div>
+	      </div>
+	      
+	      <div th:replace="fragments/homePage.html :: backButton(back='/', text1='Indietro', back2='no', text2=' ')"></div>
+	    </div> <!-- end container -->
+	  </section>
+	
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

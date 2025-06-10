@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Cerca Movie')"> </head>
+<body>
+
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+	
+	<section class="generic_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Cerca tra i nostri Film</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					
+					<div class="form_container">
+						<form th:action="@{/searchMovies}" th:object="${movie}"  method="post">
+							<div><input type="text" class="form-control" placeholder="Anno" name="year" required></div>
+
+
+							<div class="btn_box"><button type="submit">Conferma</button></div>
+						</form>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<img style="width: 50%" src="/images/camera.gif">
+				</div>
+			</div>
+<!--
+	<section class="generic_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Cerca tra i nostri Film</h2>
+			</div>
+			
+	-->		
+			
+ <!--   <div class="form_container">
+	<form th:action="@{/searchMovies}" th:object="${movie}" method="post" >
+		<div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger" role="alert">
+			<h4 align="center" th:each="err : ${#fields.globalErrors()}" th:text="'Errore: ' + ${err}">...</h4>	
+		</div>
+		
+		<div><input type="text" class="form-control" placeholder="Anno" th:field="*{year}"></div>
+		<div th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="alert alert-danger" role="alert"></div>
+		
+			<div class="btn_box"><button type="submit">Cerca</button></div>
+				</form>
+			</div>
+			
+	
+		<div th:replace="fragments/homePage.html :: backButton(back='/admin/indexMovie', 
+																 text1='Dashboard',
+																 back2='/movie',
+																 text2='Elenco Movies')"></div>
+																 -->
+	<div th:replace="fragments/homePage.html :: backButton(back='/admin/indexMovie', text1='Indietro', back2='no', text2=' ')"></div>
+
+		</div> <!-- end container -->
+	</section>
+
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

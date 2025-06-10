@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Modifica Artist')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+	<section class="generic_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Modifica Artist</h2>
+			</div>
+
+
+
+			<div class="form_container">
+				<form th:action="@{/admin/artist/modificaArtist/} + *{id}" method="post" th:object="${artist}">
+					<div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger" role="alert">
+						<h4 align="center" th:each="err : ${#fields.globalErrors()}" th:text="'Errore: ' + ${err}">...</h4>
+					</div>
+					<div>Nome:<br><input type="text" class="form-control" placeholder="Nome" th:field="*{name}"></div>
+					<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger" role="alert"></div>
+					
+					<div>Cognome:<br><input type="text" class="form-control" placeholder="Cognome" th:field="*{surname}"></div>
+					<div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="alert alert-danger" role="alert"></div>
+					
+					<div>Data di Nascita:<br><input type="date" class="form-control" placeholder="Data di Nascita" th:field="*{dateOfBirth}"></div>
+					<div th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="alert alert-danger" role="alert"></div>
+
+					<div class="btn_box"><button type="submit">Modifica</button></div>
+				</form>
+				<br><br>
+				<h3>Modifica Immagine Profilo Artist</h3><br>
+				<div class="form_container">
+					<form th:action="@{/admin/artist/changeImg/} + ${artist.id}" method="post" enctype="multipart/form-data">
+						<div><input type="file" class="form-control-file" name="file" required></div>
+
+						<div class="preview-img">
+							<h5><em>Immagine attuale:</em></h5>
+							<img th:if="${artist.img == 'profili'}" src="/images/artist.png" alt="Profile artist">
+							<img th:unless ="${artist.img == 'profili'}" th:src="'/images/artist/profili/' + ${artist.img}" alt="Profile Artist">
+						</div>
+
+						<div class="btn_box"><button type="submit">Cambia Immagine</button></div>
+					</form>
+				</div>
+			</div>
+			
+			
+			
+
+			<div th:replace="fragments/homePage.html :: backButton(back='/', text1='Dashboard', back2='/admin/artist', text2='Elenco Artists')"></div>
+		</div> <!-- end container -->
+	</section>
+
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

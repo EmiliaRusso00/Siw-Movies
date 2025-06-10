@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Admin Movies')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+
+	<section class="generic_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Elenco Movies Presenti nel Sistema - Admin</h2>
+			</div>
+			
+			
+			<div class="container-fluid mb-5">
+				<h3>Inserisci nuovi film</h3>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="admin-box">
+							<div class="contenuto-box artist">
+								<div class="icon"> <img src="/images/movie1.jpg"> </div>
+								<h4>Inserisci Film</h4>
+								<p>(Aggiungi nuovi <strong>fim</strong> al sistema di servizio di film)</p>
+								<a class="btn btn-success" th:href="@{/admin/formNewMovie}">Andiamo</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="admin-box">
+							<div class="contenuto-box movie">
+								<div class="icon"> <img src="/images/movie1.jpg"> </div>
+								<h4>Gestisci la lista dei nostri film</h4>
+								<p>(Visiona tutti i nostri <strong>film</strong> nel sistema di servizio di film)</p>
+								<a class="btn btn-success" th:href="@{/admin/manageMovies}">Andiamo</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="admin-box">
+							<div class="contenuto-box review">
+								<div class="icon"> <img src="/images/movie1.jpg"> </div>
+								<h4>Cerca i nostri film per anno all'interno della nostra lista</h4>
+								<p>(Cerca tutti i <strong>film</strong> che vuoi nel sistema di servizio di film)</p>
+								<a class="btn btn-success" th:href="@{/formSearchMovies}">Andiamo</a>
+							</div>
+						</div>
+					</div>
+
+
+				<div th:replace="fragments/homePage.html :: backButton(back='/', text1='Indietro', back2='no', text2=' ')"></div>
+			</div> <!-- end container -->
+		</section>
+
+		<footer th:replace="fragments/homePage.html :: fondo"></footer>
+		<div th:replace="fragments/homePage.html :: jsFiles"></div>
+	</body>
+	</html>

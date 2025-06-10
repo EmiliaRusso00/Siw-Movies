@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Scelta Attori')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+	
+	
+	<section class="artist-background informations-section ">
+
+		<div th:if="${movie.img == 'profili'}" class="img-profile-informations">
+			<img src="/images/movie1.jpg" alt="">
+		</div>
+		<div th:unless ="${movie.img == 'profili'}" class="img-profile-informations">
+			<img th:src="'/images/movie/profili/' + ${movie.img}" alt="Profile Movie">
+		</div>
+
+	</section>
+	
+	<section class="generic_section layout_padding">
+	     <div class="container">
+			 <div class="heading_container">
+		         <h2>Attori del film intitolato "<strong th:text="${movie.title}"></strong>" dell'Anno <strong th:text="${movie.year}"></strong></h2>
+			</div>
+	<div th:if="${movie.actors.isEmpty()}">Non ci sono attori per questo film</div>
+	
+	<h3>Elenco Attori del Film</h3><br>
+			<div class="table-responsive">
+				<table class="table table-striped table-hover">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Cognome</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each= "actor: ${movie.actors}" >
+							<th scope="row" th:text="${actor.id}">1</th>
+							<th th:text="${actor.name}">Nome</th>
+							<th th:text="${actor.surname}">Cognome</th>
+							<th><a class="btn btn-success" th:href="@{'/admin/removeActorFromMovie/'+ ${actor.id}+'/'+${movie.id}}">Delete</a></th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+	
+
+
+         <h3>Elenco Attori che si possono aggiungere:</h3><br>
+			<div class="table-responsive">
+				<table class="table table-striped table-hover">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Cognome</th>
+							<th scope="col"></th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each= "actor: ${actorsToAdd}" >
+							<th scope="row" th:text="${actor.id}">1</th>
+							<th th:text="${actor.name}">Nome</th>
+							<th th:text="${actor.surname}">Cognome</th>
+							<th><a class="btn btn-success" th:href="@{'/admin/addActorToMovie/'+ ${actor.id}+'/'+${movie.id}}">Aggiungi</a></th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
+
+      <div th:replace="fragments/homePage.html :: backButton(back='/admin/formUpdateMovie/'+ ${movie.id}, text1='Fine', back2='no', text2=' ')"></div>
+	</section>
+
+<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

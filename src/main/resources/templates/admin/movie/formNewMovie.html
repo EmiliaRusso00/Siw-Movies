@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Aggiungi Movie')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+	<section class="generic_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Aggiungi Nuovo Film</h2>
+			</div>
+
+
+			<div class="form_container">
+				<form th:action="@{/admin/movie}" 
+					  method="post" th:object="${movie}" enctype="multipart/form-data">
+					<div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger" role="alert">
+						<h4 align="center" th:each="err : ${#fields.globalErrors()}" th:text="'Errore: ' + ${err}">...</h4>
+					</div>
+					<div><input type="text" class="form-control" placeholder="Titolo" th:field="*{title}"></div>
+					<div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger" role="alert"></div>
+
+					<div><input type="text" class="form-control" placeholder="Anno" th:field="*{year}"></div>
+					<div th:if="${#fields.hasErrors('year')}" th:errors="*{year}" class="alert alert-danger" role="alert"></div>
+
+					<div><input type="file" class="form-control-file" name="file"></div>
+
+					<div class="btn_box"><button type="submit">Aggiungi</button></div>
+				</form>
+			</div>
+
+		<div th:replace="fragments/homePage.html :: backButton(back='/admin/indexMovie', 
+																 text1='Dashboard',
+																 back2='/movie',
+																 text2='Elenco Movies')"></div>
+		</div> <!-- end container -->
+	</section>
+
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

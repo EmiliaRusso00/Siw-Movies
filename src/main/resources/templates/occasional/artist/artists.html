@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Elenco Artists')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+	<section class="boxInfo_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Elenco Artists</h2>
+			</div>
+			
+			<div class="row grid">
+				<div th:each="artist : ${artists}" class="col-sm-6 col-lg-4 all">
+					<div class="box">
+						<div>
+
+							<div th:if="${artist.img == 'profili'}" class="img-box">
+								<img src="/images/artist.jpg" alt="">
+							</div>
+							<div th:unless ="${artist.img == 'profili'}" class="img-box">
+								<img th:src="'/images/artist/profili/' + ${artist.img}" alt="Profile Artist">
+							</div>
+
+							<div class="detail-box">
+								<strong>Nome e Cognome:</strong>
+								<p th:text="${artist.name} + ' ' + ${artist.surname}">Nome e Cognome Artista</p>
+								<strong>Data di Nascita:</strong>
+								<p th:text="${artist.dateOfBirth}">Data di Nascita Artista</p>
+								<p><a th:href="@{/artist/} + ${artist.id}" class="btn btn-sm">Dettagli</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div th:replace="fragments/homePage.html :: backButton(back='/', text1='Indietro', back2='no', text2=' ')"></div>
+		</div> <!-- end container -->
+	</section>
+	
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Manage Movies')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+	<section class="boxInfo_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Elenco Movies</h2>
+			</div>
+			
+			<div class="row grid">
+				<div th:each="movie : ${movies}" class="col-sm-6 col-lg-4 all">
+					<div class="box">
+						<div>
+							<div th:if="${movie.img == 'profili'}" class="img-box">
+								<img src="/images/movie1.jpg" alt="">
+							</div>
+							<div th:unless ="${movie.img == 'profili'}" class="img-box">
+								<img th:src="'/images/movie/profili/' + ${movie.img}" alt="Profile Movie">
+							</div>
+							<div class="detail-box">
+								<strong>Titolo</strong>
+								<p th:text="${movie.title}">Titolo Movie</p>
+								<strong>Anno:</strong>
+								<p th:text="${movie.year}">Anno</p>
+								<p><a th:href="@{'/admin/formUpdateMovie' + '/' + ${movie.id}}" class="btn btn-sm">Aggiorna</a></p>
+							    <p><a th:href="@{'/admin/movie/delete/'+${movie.id}}" class="btn btn-sm" >Delete</a></p>
+							    <p><a th:href="@{'/admin/movie/modificaMovie/'+${movie.id}}" class="btn btn-sm" >Modifica</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+			</div>
+			<div th:replace="fragments/homePage.html :: backButton(back='/admin/indexMovie', text1='Index Movie', back2='/admin/indexArtist', text2='Index Artist')"></div>
+		</div> <!-- end container -->
+	</section>
+	
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>
+			

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Informazioni Movie')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+			
+		<section class="boxInfo_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Elenco delle Review per questo film</h2>
+			</div>
+			<div th:if="${reviews.isEmpty()}">Non ci sono ancora review per questo film</div>
+			
+			
+			<div class="row grid">
+				<div th:if="${!reviews.isEmpty()}">
+				<div th:each="review : ${reviews}" class="col-sm-6 col-lg-4 all">
+					<div class="box">
+						<div>
+							<div class="detail-box">
+								<strong>Titolo</strong>
+								<p th:text="${review.title}">Titolo Review</p>
+								<strong>Testo:</strong>
+								<p th:text="${review.text}">Testo</p>
+								<strong>Valutazione:</strong>
+								<p th:text="${review.valutazione}">Valutazione</p>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+			<div th:replace="fragments/homePage.html :: backButton(back='/movie', text1='Movie', back2='no', text2=' ')"></div>
+		</div> <!-- end container -->
+	</section>
+			
+	
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

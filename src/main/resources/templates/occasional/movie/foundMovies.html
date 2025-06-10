@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Cerca Movie')"> </head>
+<body>
+
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+	
+	
+	
+	
+	<section class="boxInfo_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Film che soddisfano i requisiti</h2>
+			</div>
+			<div th:if="${movies.isEmpty()}">Non ci sono film che soddisfano i requisiti</div>
+			
+			
+			<div class="row grid">
+				<div th:if="${!movies.isEmpty()}">
+				<div th:each="movie : ${movies}" class="col-sm-6 col-lg-4 all">
+					<div class="box">
+						<div>
+							<div th:if="${movie.img == 'profili'}" class="img-box">
+								<img src="/images/movie1.jpg" alt="">
+							</div>
+							<div th:unless ="${movie.img == 'profili'}" class="img-box">
+								<img th:src="'/images/movie/profili/' + ${movie.img}" alt="Profile Movie">
+							</div>
+							<div class="detail-box">
+								<strong>Titolo</strong>
+								<p th:text="${movie.title}">Titolo Movie</p>
+								<strong>Anno:</strong>
+								<p th:text="${movie.year}">Anno</p>
+								<p><a th:href="@{/admin/movie/} + ${movie.id}" class="btn btn-sm">Dettagli</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			
+			<div th:replace="fragments/homePage.html :: backButton(back='/formSearchMovies', text1='Cerca Film', back2='no', text2=' ')"></div>
+		</div> <!-- end container -->
+	</section>
+	
+	
+
+<!--	<section class="generic_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Film che soddisfano i requisiti</h2>
+				<div th:if="${movies.isEmpty()}">Non ci sono film che soddisfano i requisiti</div>
+	 
+	 
+	 <div class="row grid">
+		 <div th:if="${!movies.isEmpty()}">
+				<div th:each="movie : ${movies}" class="col-sm-6 col-lg-4 all">
+					<div class="box">
+						<div>
+							<div th:if="${movie.img == 'profili'}" class="img-box">
+								<img src="/images/movie1.jpg" alt="">
+							</div>
+							<div th:unless ="${movie.img == 'profili'}" class="img-box">
+								<img th:src="'/images/movie/profili/' + ${movie.img}" alt="Profile Movie">
+							</div>
+							<div class="detail-box">
+								<strong>Titolo</strong>
+								<p th:text="${movie.title}">Titolo Movie</p>
+								<strong>Anno:</strong>
+								<p th:text="${movie.year}">Anno</p>
+								<p><a th:href="@{'/admin/formUpdateMovie' + '/' + ${movie.id}}" class="btn btn-sm">Aggiorna</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+	          </div>
+			
+	<ul th:if="${!movies.isEmpty()}">
+		<li th:each="movie : ${movies}">
+			<a href="movie.html" th:href="@{'/movie' + '/' + ${movie.id}}"
+				th:text="${movie.title} + ' (' + ${movie.year}+')'">Up! (2000)</a>
+		</li>
+	</ul>
+			</div>
+		
+		
+		<div th:replace="fragments/homePage.html :: backButton(back='/formSearchMovies', text1='Cerca Movie', back2='no', text2=' ')"></div>
+		</div>
+    </section>
+    -->
+
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

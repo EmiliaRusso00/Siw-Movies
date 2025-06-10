@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Informazioni Movie')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+	<section class="movie-background informations-section ">
+
+		<div th:if="${movie.img == 'profili'}" class="img-profile-informations">
+			<img src="/images/movie1.jpg" alt="">
+		</div>
+		<div th:unless ="${movie.img == 'profili'}" class="img-profile-informations">
+			<img th:src="'/images/movie/profili/' + ${movie.img}" alt="Profile Movie">
+		</div>
+
+	</section>
+	
+	<section class="generic_section layout_padding">
+		<div class="container">
+			<div class="card-informations" th:object="${movie}">
+				<div>
+					<strong>Titolo Movie: </strong><span th:text="*{title}"></span><br>
+					<strong>Anno: </strong><span th:text="*{year}"></span><br>
+				</div>
+				
+				<div class="boxInfo_section layout_padding">
+				<div class="heading_container">
+					<h2>Review del Movie</h2><br>
+				</div>
+
+				<div class="row grid">
+					<div th:each="review : ${movie.reviews}" class="col-sm-6 col-lg-4 all">
+						<div class="box">
+							<div>
+								<div class="detail-box">
+									<strong>Titolo:</strong>
+									<p th:text="${review.title}">Titolo Film</p>
+									<strong>Testo:</strong>
+									<p th:text="${review.text}">Testo</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div> <!-- end container -->
+	</section> 
+	
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

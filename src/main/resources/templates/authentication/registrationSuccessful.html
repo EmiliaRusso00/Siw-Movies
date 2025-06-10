@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/homePage.html :: headerfiles(title='Registration Successfuly')"> </head>
+
+<body>
+		<header th:replace="fragments/homePage.html :: navMenu"></header>
+
+	<section class="generic_section layout_padding">
+	    <div class="container">
+		  <div class="alert alert-success" role="alert">
+		  	<h2>Registrazione avvenuta con successo!</h2>
+		  </div>
+		  <img style="width: 50%" src="/images/success-page-image.gif">
+	      <div th:replace="fragments/homePage.html :: backButton(back='/', text1='Indietro', back2='no', text2=' ')"></div>
+	    </div> <!-- end container -->
+	  </section>
+	
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>

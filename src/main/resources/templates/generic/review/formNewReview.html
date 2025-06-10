@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Aggiungi Review')"> </head>
+<body>
+  <header th:replace="fragments/homePage.html :: navMenu"></header>
+
+  <section class="generic_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>Aggiungi Nuova Review al Movie</h2>
+      </div>
+
+
+
+
+ <div class="form_container">
+        <form th:action="@{/generic/aggiungiReview/} + ${idMovie}" 
+              method="post" th:object="${review}" >
+
+          <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger" role="alert">
+            <h4 align="center" th:each="err : ${#fields.globalErrors()}" th:text="'Errore: ' + ${err}">...</h4>
+          </div>
+          <div><input type="text" class="form-control" placeholder="Titolo" th:field="*{title}"></div>
+          <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="alert alert-danger" role="alert"></div>
+
+          <div><input type="text" class="form-control" placeholder="Testo" th:field="*{text}"></div>
+          <div th:if="${#fields.hasErrors('text')}" th:errors="*{text}" class="alert alert-danger" role="alert"></div>
+
+          <div><input type="number" class="form-control" placeholder="Valutazione" th:field="*{valutazione}"></div>
+          <div th:if="${#fields.hasErrors('valutazione')}" th:errors="*{valutazione}" class="alert alert-danger" role="alert"></div>
+
+
+          <div class="btn_box"><button type="submit">Aggiungi</button></div>
+        </form>
+      </div>
+
+    <div th:replace="fragments/homePage.html :: backButton(back='/', text1='Indietro', back2='/movie', text2='Elenco Movies')"></div>
+    </div> <!-- end container -->
+  </section>
+
+  <footer th:replace="fragments/homePage.html :: fondo"></footer>
+  <div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html>
+
+<!--
+
+
+	<h1>Aggiungi una Review</h1>
+	<form th:action="@{/generic/aggiungiReview/} + ${idMovie}" method="POST" th:object="${review}">
+  		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+  		</div>
+		
+		<div>
+			<label>Titolo:</label> 
+			<span><input type="text" th:field="${review.title}" /></span>
+		    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+		    </span>
+		</div>
+
+		<div>
+			<label>Valutazione:</label> <span><input type="number" th:field="${review.valutazione}" /></span>
+		    <span th:if="${#fields.hasErrors('valutazione')}" th:errors="*{valutazione}">
+		    </span>
+		</div>
+
+		<div>
+			<label>Descrizione:</label> <span><input type="text" th:field="${review.text}" /></span>
+		</div>
+		
+		<div>
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
+
+	
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+</body>
+
+</html>
+-->

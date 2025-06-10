@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/homePage.html :: headerfiles(title='Informazioni Artista')"> </head>
+<body>
+	<header th:replace="fragments/homePage.html :: navMenu"></header>
+	
+	<section class="artist-background informations-section "> 
+       	
+       		<div th:if="${artist.img == 'profili'}" class="img-profile-informations">
+			<img src="/images/artist.jpg" alt="">
+		    </div>
+		<div th:unless ="${artist.img == 'profili'}" class="img-profile-informations">
+			<img th:src="'/images/artist/profili/' + ${artist.img}" alt="Profile Artist">
+		</div>
+
+	</section>
+
+ 	<section class="generic_section layout_padding">
+		<div class="container">
+
+			<div class="card-informations" th:object="${artist}">
+				<div>
+					<strong>Nome: </strong><span th:text="*{name}"></span><br>
+					<strong>Cognome: </strong><span th:text="*{surname}"></span><br>
+					<strong>Data di Nascita: </strong><span th:text="*{dateOfBirth}"></span><br>
+				</div>
+            
+			<div th:replace="fragments/homePage.html :: backButton(back='/artist', text1='Elenco Artisti', back2='no', text2=' ')"></div>
+		</div> <!-- end container -->
+    </section>
+    
+    
+ 
+ <!--   <section class="boxInfo_section layout_padding">
+		<div class="container">
+			<div class="heading_container">
+				<h2>Elenco Dei Film</h2>
+			</div>
+			
+			<div class="row grid">
+				<div th:each="movie : ${artist.starredMovies}" class="col-sm-6 col-lg-4 all">
+					<div class="box">
+						<div>
+							<div th:if="${movie.img == 'profili'}" class="img-box">
+								<img src="/images/movie1.jpg" alt="">
+							</div>
+							<div th:unless ="${movie.img == 'profili'}" class="img-box">
+								<img th:src="'/images/movie/profili/' + ${movie.img}" alt="Profile Movie">
+							</div>
+							<div class="detail-box">
+								<strong>Titolo</strong>
+								<p th:text="${movie.title}">Titolo Movie</p>
+								<strong>Anno:</strong>
+								<p th:text="${movie.year}">Anno</p>
+								<p><a th:href="@{/movie/} + ${movie.id}" class="btn btn-sm">Dettagli</a></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+    
+			<div th:replace="fragments/homePage.html :: backButton(back='/', text1='Indietro', back2='no', text2=' ')"></div>
+		</div> <!-- end container -->
+<!--	</section> -->
+	
+	
+	<footer th:replace="fragments/homePage.html :: fondo"></footer>
+	<div th:replace="fragments/homePage.html :: jsFiles"></div>
+</body>
+</html> 
