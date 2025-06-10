@@ -1,27 +1,27 @@
-# Sistema Informativo Film - Progetto Spring Boot
+# 🎥 Sistema Informativo Film - Progetto Spring Boot 
 
 ## Descrizione
 
 Questo progetto consiste nella progettazione e implementazione di un **sistema informativo** per la gestione di **film, attori, registi e recensioni**.  
 Il sistema è sviluppato con **Spring Boot** e prevede l'accesso tramite tre tipologie di utenti: utenti occasionali, utenti registrati e amministratori.
 
-## Funzionalità principali
+## 🍿Funzionalità principali
 
-### ✅ Utente generico (non autenticato)
+### Utente generico (non autenticato)
 - Consultazione di film, attori, registi e recensioni
 
-### ✅ Utente registrato
+### Utente registrato
 - Consultazione dei dati
 - Inserimento di **una recensione** per ciascun film
 
-### ✅ Amministratore
+### Amministratore
 - Inserimento, modifica e cancellazione di:
   - Film
   - Attori
   - Registi
 - Cancellazione delle recensioni
 
-## Specifiche tecniche
+##🎞️ Specifiche tecniche
 
 - Ogni **film** include:
   - Titolo
@@ -43,7 +43,7 @@ Il sistema è sviluppato con **Spring Boot** e prevede l'accesso tramite tre tip
 
 - **Immagini e fotografie** vengono caricate e salvate sul server, **non tramite link esterni**.
 
-## Casi d'uso implementati
+## 🎭 Casi d'uso implementati
 
 ### 👤 Amministratore
 1. Inserimento di un nuovo film
